@@ -7,13 +7,11 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 
-    <!-- Enables the Spring MVC @Controller programming model -->
+<!-- Enables the Spring MVC @Controller programming model -->
     <annotation-driven />
-
     <!-- swagger-->
-    <beans:bean name="swaggerConfig" class="com.orderapi.spring.SwaggerConfig" />
+    <beans:bean name="swaggerConfig" class="com.orderapi.SwaggerConfig" />
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -28,23 +26,6 @@
                 <beans:ref bean="jsonMessageConverter"/>
             </beans:list>
         </beans:property>
-    </beans:bean>
-
-    <beans:bean id="springDataSource" class="org.springframework.jdbc.datasource.SingleConnectionDataSource">
-        <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <beans:property name="url" value="jdbc:mysql://localhost:3306/pos?useUnicode=yes" />
-        <beans:property name="username" value="root" />
-        <beans:property name="password" value="root" />
-    </beans:bean>
-
-    <beans:bean id="customerDAO" class ="com.orderapi.spring.dao.CustomerDAO">
-        <beans:property name="dataSource" ref="springDataSource"/>
-    </beans:bean>
-    <beans:bean id="userDAO" class ="com.orderapi.spring.dao.UserDAO">
-        <beans:property name="dataSource" ref="springDataSource"/>
-    </beans:bean>
-    <beans:bean id="counterDAO" class ="com.orderapi.spring.dao.CounterDAO">
-        <beans:property name="dataSource" ref="springDataSource"/>
     </beans:bean>
 
     <!-- Configure bean to convert JSON to POJO and vice versa -->
